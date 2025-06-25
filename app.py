@@ -1,4 +1,3 @@
-from gensim.models import LdaModel
 import pandas as pd
 import pickle
 import plotly.express as px
