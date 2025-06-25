@@ -1,5 +1,6 @@
 from gensim.models import LdaModel
 import pandas as pd
+import pickle
 import plotly.express as px
 import streamlit as st
 
@@ -303,7 +304,8 @@ try:
                                  color_discrete_map=sentiment_color_map)
             st.plotly_chart(fig_box_age, use_container_width=True)
     elif analysis_type == 'Topics':
-        lda_model = LdaModel.load('lda.model')
+        with open('lda_model.pkl', 'rb') as f:
+            lda_model = pickle.load(f)
         topics_df = pd.read_csv('topics.csv')
         filtered_df = filtered_df.merge(topics_df, on='Leaflet_ID')
 
